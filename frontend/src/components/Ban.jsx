@@ -3,7 +3,7 @@ import banner from "../../public/Banner.png";
 function Ban() {
   return (
     <>
-    <div className="max-w-screen-2xl md:px-4 flex flex-col md:flex-row dark:bg-dark-bg bg-light-bg dark:text-white transition duration-500 ease-in-out">
+    <div className="max-w-screen-2xl md:px-10 px-4 flex flex-col md:flex-row dark:bg-dark-bg bg-light-bg dark:text-white transition duration-500 ease-in-out">
         <div className='w-full order-2 md:order-1 md:w-1/2 md:mt-36'>
         <div className="space-y-8">
             <h1 className="text-2xl md:text-4xl font-bold">

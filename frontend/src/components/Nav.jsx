@@ -2,7 +2,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Login from "./Login";
+import Logout from "./Logout";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
+
 function Nav() {
+
+  const [authUser, setAuthUser] = useAuth()
+  
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -20,6 +27,10 @@ function Nav() {
     }
   }, [theme]);
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +43,8 @@ function Nav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
+
 
   const navItems = (
     <>
@@ -86,9 +99,9 @@ function Nav() {
               {navItems}
             </ul>
           </div>
-          <a className="btn font-bold cursor-pointer btn-ghost text-xl">
+          <Link to="/" className="btn font-bold cursor-pointer btn-ghost text-xl">
             BookStore
-          </a>
+          </Link>
         </div>
         <div className="navbar-end">
           {/*  <!-- This section should be hidden on smaller screens and shown on lg and larger screens -->  */}
@@ -146,12 +159,23 @@ function Nav() {
               </svg>
             </label>
           </div>
-          <div className="">
-            <a className="btn bg-black text-white hover:bg-slate-800 duration-300 w-13 " onClick={() => document.getElementById("my_modal_3").showModal()}>
-              Login
-            </a>
-            <Login />
-          </div>
+
+
+          {authUser ? (
+              <Logout />
+            ) : (
+              <div className="">
+                <a
+                  className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                >
+                  Login
+                </a>
+                <Login />
+              </div>
+            )}
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import Course from '../components/Course'
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import list from "../../public/list.json";
 function Courses() {
   // console.log(list);
   return (
